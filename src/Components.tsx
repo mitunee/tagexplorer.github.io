@@ -58,6 +58,16 @@ export const Gen = ({
       }
     }
   }
+  const handleMiddleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!(e.button === 1)) return
+    if (onGenClick === 'OpenImage') {
+      window.open(imgUrl, '_blank')
+    }
+    if (onGenClick === 'OpenDanbooru') {
+      const danbooruTag = tag.replace(/ /g, '_').replace(/\\/g, '')
+      window.open(`https://danbooru.donmai.us/posts?tags=${danbooruTag}`, '_blank')
+    }
+  }
 
   const [favorites, setFavorites] = useAtom(favoritesAtom)
 
@@ -68,6 +78,7 @@ export const Gen = ({
         'full-opacity-on-hover-parent',
       ].join(' ')}
       onClick={handleClick}
+      onAuxClick={handleMiddleClick}
     >
       {tag !== 'no tag' && (
         <div className="absolute top-[0px] right-[8px] z-10 text-3xl">
@@ -411,12 +422,15 @@ export const TagGroupBlock = ({
   )
   const tagGroupFuse = useMemo(() => new Fuse([slug], fuseOptions), [fuseOptions, slug])
   const ineffectiveTags = useAtomValue(ineffectiveTagsAtom)
+  const favoritesOnly = useAtomValue(favoritesOnlyAtom)
   const tagsWithIneffective = useMemo(
     () => [
       ...tags,
-      ...(ineffectiveTags === 'IneffectiveTagsShow' ? (fails ?? []).map((t) => `_fail_${t}`) : []),
+      ...(ineffectiveTags === 'IneffectiveTagsShow' || favoritesOnly
+        ? (fails ?? []).map((t) => `_fail_${t}`)
+        : []),
     ],
-    [tags, fails, ineffectiveTags],
+    [tags, fails, ineffectiveTags, favoritesOnly],
   )
   const tagFuse = useMemo(
     () =>
@@ -428,7 +442,6 @@ export const TagGroupBlock = ({
   )
   const slugIsMatched = tagGroupFuse.search(tagGroupFilter).length > 0
   const matchedTags = tagFuse.search(tagFilter).map((result) => result.item)
-  const favoritesOnly = useAtomValue(favoritesOnlyAtom)
   const favorites = useAtomValue(favoritesAtom)
   const artistOrder = useAtomValue(artistOrderAtom)
   const tagsToShowWithoutBase = (tagFilter.trim() !== '' ? matchedTags : tagsWithIneffective)
