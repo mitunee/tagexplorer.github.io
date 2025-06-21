@@ -4,6 +4,7 @@ export interface TagGroup {
   prompt?: string
   tags: string[]
   fails?: string[]
+  portrait?: boolean
 }
 
 export const defaultPrompt = '1girl, bob cut, black hair, bedroom,'
@@ -12,9 +13,9 @@ export const unconventionalMedia: TagGroup = {
   slug: 'unconventional_media',
   wikiPage: 'https://danbooru.donmai.us/wiki_pages/unconventional_media',
   // prettier-ignore
-  tags: [ 'amigurumi \\(medium\\)', 'diorama \\(medium\\)', 'food art \\(medium\\)', 'kyaraben \\(medium\\)', 'latte art \\(medium\\)', 'lego \\(medium\\)', 'model kit \\(medium\\)', 'papercraft \\(medium\\)', 'kirigami \\(medium\\)', 'paper child', 'paper cutout \\(medium\\)', 'sand \\(medium\\)', 'snow \\(medium\\)', 'stop motion animation', 'wax \\(medium\\)', 'wood carving \\(medium\\)', ],
+  tags: [ 'amigurumi \\(medium\\)', 'diorama \\(medium\\)', 'kyaraben \\(medium\\)', 'latte art \\(medium\\)', 'lego \\(medium\\)', 'model kit \\(medium\\)', 'papercraft \\(medium\\)', 'kirigami \\(medium\\)', 'paper child', 'paper cutout \\(medium\\)', 'sand \\(medium\\)', 'snow \\(medium\\)', 'stop motion animation', 'wax \\(medium\\)', 'wood carving \\(medium\\)', ],
   // prettier-ignore
-  fails: [ '3d printing \\(medium\\)', 'clay \\(medium\\)', 'garage kit \\(medium\\)', 'origami \\(medium\\)', 'polystrene \\(medium\\)', ],
+  fails: [ '3d printing \\(medium\\)', 'clay \\(medium\\)', 'garage kit \\(medium\\)', 'origami \\(medium\\)', 'polystrene \\(medium\\)', 'food art \\(medium\\)',],
 }
 
 export const traditionalMedia: TagGroup = {
