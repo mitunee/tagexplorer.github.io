@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { useSetAtom, useAtomValue, useAtom } from 'jotai'
-import { ChevronDown, ChevronUp, Settings as SettingsIcon } from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import {
   onGenClickAtom,
   type OnGenClick,

@@ -1,5 +1,4 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Sun, Moon } from 'lucide-react'
 import { themeAtom, type Theme } from '../globalState'
 import { useAtom } from 'jotai'
