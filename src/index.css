@@ -15,16 +15,22 @@ html[data-theme='dark'] {
 
 :root {
   --bg: #ffffff;
-  --subtle: #ccc;
+  --subtle: #666;
   --subtle-border: 1px solid #ccc;
   color: #000000;
+  --fail: #b42626;
 }
 
 :root [data-theme='dark'] {
   --bg: #212121;
   --subtle-border: 1px solid #333;
-  --subtle: #333;
+  --subtle: #aaa;
+  --fail: #dca4a4;
   color: #ffffff;
+}
+
+.subtle-border {
+  border: var(--subtle-border);
 }
 
 .bg {
