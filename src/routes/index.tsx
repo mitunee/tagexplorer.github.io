@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import '../index.css'
+import '../normalize.css'
 import { type TagGroup, allTagGroups, defaultPrompt } from '../tagGroups'
 import { useMemo, useState } from 'react'
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai'
@@ -20,7 +21,7 @@ function Index() {
   // const searchParams: SearchParams = Route.useSearch()
   // const activeTagGroup = searchParams.tagGroup
   return (
-    <div className="py-3 px-5">
+    <div className="py-3 px-5 bg">
       <Settings />
       <div>
         {allTagGroups.map((tagGroup, i) => (
@@ -54,10 +55,10 @@ const Settings = () => {
   const toggleFavoritesOnly = () => setFavoritesOnly((prev) => !prev)
 
   return (
-    <div className="bg-gray-50 my-5 py-5 px-4 rounded-lg shadow-md flex flex-col gap-3 text-sm">
+    <div className="subtle-bg my-5 py-5 px-4 rounded-lg custom-shadow-md flex flex-col gap-3 text-sm">
       <div
-        className="text-gray-600 flex gap-3 items-center pb-4 flex-wrap"
-        style={{ borderBottom: '1px solid #ccc' }}
+        className="flex gap-3 items-center pb-4 flex-wrap"
+        style={{ borderBottom: 'var(--subtle-border)' }}
       >
         <div className="flex gap-2 items-center flex-wrap">
           <label htmlFor="imageSize" className="font-semibold">
@@ -67,8 +68,8 @@ const Settings = () => {
             id="imageSize"
             value={imageSize}
             onChange={(e) => setImageSize(e.target.value as ImageSize)}
-            className="rounded px-2 "
-            style={{ border: '1px solid #ccc' }}
+            className="rounded px-2 dark:bg-neutral-700 dark:text-neutral-200"
+            style={{ border: 'var(--subtle-border)' }}
           >
             <option value="small">small</option>
             <option value="medium">medium</option>
@@ -81,7 +82,9 @@ const Settings = () => {
           <Pill label="Expand all" className="cursor-pointer text-nowrap" onClick={expandAll} />
           <Pill
             label="Favorites only"
-            className={['cursor-pointer', favoritesOnly ? 'bg-red-200' : ''].join(' ')}
+            className={['cursor-pointer', favoritesOnly ? 'bg-red-200 dark:bg-red-900' : ''].join(
+              ' ',
+            )}
             onClick={toggleFavoritesOnly}
           />
         </div>
@@ -98,7 +101,7 @@ const Settings = () => {
             id="filterTagGroups"
             type="text"
             className="rounded py-[1px] px-2 w-[200px] mt-1"
-            style={{ border: '1px solid #ccc', fontSize: '0.75rem' }}
+            style={{ border: 'var(--subtle-border)', fontSize: '0.75rem' }}
             value={searchParams.tagGroupFilter ?? ''}
             onChange={(e) => {
               const newVal = e.target.value.toLowerCase()
@@ -123,7 +126,7 @@ const Settings = () => {
             id="filterTags"
             type="text"
             className="rounded py-[1px] px-2 w-[200px] mt-1"
-            style={{ border: '1px solid #ccc', fontSize: '0.75rem' }}
+            style={{ border: 'var(--subtle-border)', fontSize: '0.75rem' }}
             value={searchParams.tagFilter ?? ''}
             onChange={(e) => {
               const newVal = e.target.value.toLowerCase()
@@ -181,9 +184,17 @@ const TagGroupBlock = ({ tagGroup, topLevel }: { tagGroup: TagGroup; topLevel?: 
   }
   const [showPrompt, setShowPrompt] = useState(false)
 
+  const imageSize = useAtomValue(imageSizeAtom)
+  const minWidths = {
+    small: 125,
+    medium: 200,
+    large: 300,
+    huge: 500,
+  }
+
   return (
     <div
-      className="bg-gray-100 my-5 pb-5 pt-2 px-4 rounded-lg shadow-md flex flex-col gap-3 relative"
+      className="strong-bg my-5 pb-5 pt-2 px-4 rounded-lg custom-shadow-md flex flex-col gap-3 relative"
       style={{
         display: isFiltered ? 'none' : 'flex',
       }}
@@ -220,19 +231,25 @@ const TagGroupBlock = ({ tagGroup, topLevel }: { tagGroup: TagGroup; topLevel?: 
       >
         <div className="flex flex-col gap-2 w-full">
           {showPrompt && (
-            <div className="text-xs text-gray-700">
+            <div className="text-xs text-gray-700 dark:text-neutral-300">
               {prompt ?? defaultPrompt} {'{{tag}}'}
             </div>
           )}
           {isCollapsed && (
             <div
-              className="w-full bottom-0 bg-gray-100 h-[5px] absolute z-10"
+              className="w-full bottom-0 bg-gray-100 dark:bg-[#282828] h-[5px] absolute z-10"
               style={{
                 maskImage: 'linear-gradient(to bottom, transparent, black)',
               }}
             ></div>
           )}
-          <div className="flex items-start gap-2 flex-wrap relative">
+          <div
+            className="grid w-full"
+            style={{
+              gridTemplateColumns: `repeat(auto-fill, minmax(${minWidths[imageSize]}px, 1fr))`,
+              gap: '8px',
+            }}
+          >
             {effectiveTags.map((tag, i) => (
               <Gen key={i} tag={tag} slug={slug} />
             ))}
@@ -252,20 +269,14 @@ const Gen = ({ tag, slug }: { tag: string; slug: string }) => {
       setJustClicked(false)
     }, 1000)
   }
-  const imageSize = useAtomValue(imageSizeAtom)
-  const width = {
-    small: 'w-[125px]',
-    medium: 'w-[200px]',
-    large: 'w-[300px]',
-    huge: 'w-[500px]',
-  }
+
   const [favorites, setFavorites] = useAtom(favoritesAtom)
+
   return (
     <div
       className={[
-        'flex flex-col bg-white rounded-lg overflow-hidden my-1 shadow-sm cursor-pointer relative',
-        ' full-opacity-on-hover-parent',
-        width[imageSize],
+        'flex flex-col bg-white dark:bg-black rounded-lg overflow-hidden my-1 custom-shadow-sm cursor-pointer relative',
+        'full-opacity-on-hover-parent',
       ].join(' ')}
       onClick={handleClick}
     >
@@ -286,14 +297,14 @@ const Gen = ({ tag, slug }: { tag: string; slug: string }) => {
           {favorites.includes(tag) ? '♥' : '♡'}
         </button>
       </div>
-      <div className={width[imageSize]}>
-        <img src={encodeURI(`/gens/${slug}/${tag}_00001_.png`)} className="w-[100%] h-auto" />
+      <div className="w-full">
+        <img src={encodeURI(`/gens/${slug}/${tag}_00001_.png`)} className="w-full h-auto" />
       </div>
       <div
-        className={['py-1 px-2 whitespace-normal w-full font-mono', width[imageSize]].join(' ')}
+        className={['py-1 px-2 whitespace-normal w-full font-mono'].join(' ')}
         style={{
           fontSize: '0.7rem',
-          color: justClicked ? '#333' : 'black',
+          color: justClicked ? 'var(--subtle)' : 'unset',
           transitionProperty: 'opacity',
           transitionDuration: '0.2s',
           transitionDelay: justClicked ? '0.8s' : '0s',
@@ -315,7 +326,7 @@ const Pill = ({ label: tag, ...props }: PillProps) => {
     <div
       {...props}
       className={[
-        'bg-gray-200 text-gray-800 rounded-full px-3 py-1 text-sm font-semibold',
+        'bg-gray-200 text-gray-800 dark:bg-neutral-700 dark:text-neutral-200 rounded-full px-3 py-1 text-sm font-semibold',
         props.className,
       ].join(' ')}
     >

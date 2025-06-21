@@ -4,7 +4,7 @@ export interface TagGroup {
   prompt?: string
   portrait?: boolean
   tags: string[]
-  subGroups?: TagGroup[]
+  fails: string[]
 }
 
 export const defaultPrompt = '1girl, bob cut, black hair, bedroom,'
