@@ -27,9 +27,11 @@ function Menu() {
         <Link to="/artists" className="[&.active]:font-bold">
           Artists
         </Link>
+        {/*
         <Link to="/about" className="[&.active]:font-bold">
           About
         </Link>
+          */}
         <div className="absolute right-[1em] top-1/2 -translate-y-1/2">
           <button
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 cursor-pointer"

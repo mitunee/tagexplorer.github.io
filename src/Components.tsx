@@ -529,10 +529,12 @@ export const TagGroupBlock = ({
     >
       <div className="flex justify-between items-center flex-wrap">
         <div
-          className="font-semibold flex gap-2 items-center cursor-pointer"
+          className="flex justify-between items-center flex-wrap grow cursor-pointer"
           onClick={artists ? () => {} : toggleCollapse}
         >
-          {artists ? <></> : toggleCollapseIcon} {slug.replace(/_/g, ' ')}
+          <div className="font-semibold flex gap-2 items-center ">
+            {artists ? <></> : toggleCollapseIcon} {slug.replace(/_/g, ' ')}
+          </div>
         </div>
         <div className="flex gap-2 items-center ">
           <Pill
@@ -559,11 +561,13 @@ export const TagGroupBlock = ({
       >
         <div className="flex flex-col gap-2 w-full">
           {showPrompt && (
-            <div
-              className="text-gray-700 dark:text-neutral-300 font-mono"
-              style={{ fontSize: '0.7rem' }}
-            >
-              {prompt ?? defaultPrompt} {'{{tag}}'}
+            <div className="w-full flex justify-end">
+              <div
+                className="text-gray-700 dark:text-neutral-300 font-mono max-w-[400px]"
+                style={{ fontSize: '0.7rem', textAlign: 'right' }}
+              >
+                {prompt ?? defaultPrompt} {artists ? 'TAG' : '(TAG:1.1)'}
+              </div>
             </div>
           )}
           {isCollapsed && (
@@ -615,12 +619,12 @@ const PageSelector = (props: {
       pageCount={props.maxPage}
       forcePage={props.page - 1}
       previousLabel="<"
-      pageClassName="px-1 py-1"
-      pageLinkClassName="page-link"
+      pageClassName=""
+      pageLinkClassName="px-1 py-1 page-link "
       previousClassName=""
-      previousLinkClassName="px-1 py-1 subtle-border"
+      previousLinkClassName="subtle-border"
       nextClassName=""
-      nextLinkClassName="px-1 py-1 subtle-border"
+      nextLinkClassName="subtle-border"
       breakLabel="…"
       breakClassName="page-item"
       breakLinkClassName="page-link"
