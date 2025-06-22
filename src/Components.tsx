@@ -525,6 +525,7 @@ export const TagGroupBlock = ({
   const isFiltered = isFilteredByTagGroup || isFilteredByTag
 
   const collapsedGroups = useAtomValue(collapsedGroupsAtom)
+  console.log(collapsedGroups)
   const isCollapsed = collapsedGroups.includes(slug) && tagFilter.trim() === ''
 
   const setCollapsedGroups = useSetAtom(collapsedGroupsAtom)

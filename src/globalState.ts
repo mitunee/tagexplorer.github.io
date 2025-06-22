@@ -28,8 +28,7 @@ export const ineffectiveTagsAtom = atomWithStorage<IneffectiveTags>(
 export const collapsedGroupsAtom = atomWithStorage<string[]>(
   'collapsedGroups',
   [faceTagGroups, styleTagGroups, compositionTagGroups]
-    .map((superGroup) => superGroup.map((g) => g.slug))
-    .slice(1)
+    .map((superGroup) => superGroup.map((tagGroup) => tagGroup.slug).slice(1))
     .flat(),
 )
 
