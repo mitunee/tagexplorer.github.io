@@ -5,6 +5,9 @@ import type { TagGroup } from '../tagGroups'
 
 export const Route = createFileRoute('/artists')({
   component: Artists,
+  head: () => ({
+    meta: [{ title: 'Artists - tagexplorer' }],
+  }),
 })
 
 const artistTagGroup: TagGroup = {

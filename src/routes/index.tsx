@@ -6,6 +6,9 @@ import { Settings, TagGroupBlock } from '../Components'
 
 export const Route = createFileRoute('/')({
   component: Index,
+  head: () => ({
+    meta: [{ title: 'Heads - tagexplorer' }],
+  }),
 })
 
 function Index() {

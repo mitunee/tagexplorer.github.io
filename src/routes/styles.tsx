@@ -6,6 +6,9 @@ import { Settings, TagGroupBlock } from '../Components'
 
 export const Route = createFileRoute('/styles')({
   component: Styles,
+  head: () => ({
+    meta: [{ title: 'Styles - tagexplorer' }],
+  }),
 })
 
 function Styles() {

@@ -6,6 +6,9 @@ import { Settings, TagGroupBlock } from '../Components'
 
 export const Route = createFileRoute('/composition')({
   component: Composition,
+  head: () => ({
+    meta: [{ title: 'Composition - tagexplorer' }],
+  }),
 })
 
 function Composition() {
