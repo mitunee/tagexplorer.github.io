@@ -33,10 +33,12 @@ export const Gen = ({
   tag: tagUnchecked,
   slug,
   webp,
+  portrait,
 }: {
   tag: string
   slug: string
   webp?: boolean
+  portrait?: boolean
 }) => {
   const [justClicked, setJustClicked] = useState(false)
   const onGenClick = useAtomValue(onGenClickAtom)
@@ -77,6 +79,8 @@ export const Gen = ({
 
   const [favorites, setFavorites] = useAtom(favoritesAtom)
 
+  const imageAspectRatio = portrait ? 'aspect-[416/608]' : 'aspect-square'
+
   return (
     <div
       className={[
@@ -106,7 +110,11 @@ export const Gen = ({
         </div>
       )}
       <div className="w-full">
-        <img src={imgUrl} className="w-full h-auto" loading="lazy" />
+        <img
+          src={imgUrl}
+          className={['w-full h-auto', imageAspectRatio].join(' ')}
+          loading="lazy"
+        />
       </div>
       <div
         className={[
@@ -421,11 +429,13 @@ export const TagGroupBlock = ({
   route,
   webp,
   artists,
+  portrait,
 }: {
   tagGroup: TagGroup
   route: AnyRoute
   webp?: boolean
   artists?: boolean
+  portrait?: boolean
 }) => {
   const { slug, wikiPage, prompt, tags, fails } = tagGroup
   const searchParams: SearchParams = route.useSearch()
@@ -525,7 +535,6 @@ export const TagGroupBlock = ({
   const isFiltered = isFilteredByTagGroup || isFilteredByTag
 
   const collapsedGroups = useAtomValue(collapsedGroupsAtom)
-  console.log(collapsedGroups)
   const isCollapsed = collapsedGroups.includes(slug) && tagFilter.trim() === ''
 
   const setCollapsedGroups = useSetAtom(collapsedGroupsAtom)
@@ -616,7 +625,7 @@ export const TagGroupBlock = ({
             }}
           >
             {tagsToShow.map((tag, i) => (
-              <Gen key={i + tag} tag={tag} slug={slug} webp={webp} />
+              <Gen key={i + tag} tag={tag} slug={slug} webp={webp} portrait={portrait} />
             ))}
           </div>
           {artists && <PageSelector page={page} maxPage={pages.length} onSubmit={setPage} />}
