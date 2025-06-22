@@ -41,7 +41,8 @@ export const faceTagsMulticoloredHair: TagGroup = {
   prompt:
     'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, upper body, straight-on, looking at viewer, simple background,',
   // prettier-ignore
-  tags: ["multicolored hair", "colored inner hair", "colored tips", "roots \\(hair\\)", "gradient hair", "patterned hair", "rainbow hair", "split-color hair", "spotted hair", "streaked hair", "striped hair", "raccoon tails", "two-tone hair"],
+  tags: ["multicolored hair", "colored inner hair", "colored tips", "roots \\(hair\\)", "gradient hair", "patterned hair", "rainbow hair", "split-color hair", "spotted hair", "streaked hair", "striped hair", "two-tone hair"],
+  fails: ['raccoon tails \\(hairstyle\\)'],
 }
 
 export const faceTagsHairStyles: TagGroup = {
