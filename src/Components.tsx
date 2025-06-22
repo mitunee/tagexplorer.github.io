@@ -442,7 +442,7 @@ export const TagGroupBlock = ({
   const tagGroupFilter = searchParams.tagGroupFilter?.replace(/\s+/g, '_') ?? ''
   const tagFilter = searchParams.tagFilter ?? ''
   const fuseOptions = useMemo(
-    () => ({ ignoreLocation: true, threshold: 0.3, keys: [], findAllMatches: true }),
+    () => ({ ignoreLocation: true, threshold: 0.1, keys: [], findAllMatches: true }),
     [],
   )
   const tagGroupFuse = useMemo(() => new Fuse([slug], fuseOptions), [fuseOptions, slug])
