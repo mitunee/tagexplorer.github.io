@@ -176,7 +176,7 @@ export const imageCompositionTechniques: TagGroup = {
 }
 
 export const imageCompositionTechniquesLighting: TagGroup = {
-  slug: 'image_composition_-_techniques_lighting',
+  slug: 'image_composition_-_techniques_-_lighting',
   wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Alighting',
   // prettier-ignore
   tags: ["backlighting", "sidelighting", "underlighting", "bloom", "sunlight", "sunbeam", "dappled sunlight", "moonlight", "spotlight", "stage lights", "caustics", "crack of light", "refraction", "light rays", "dim lighting", "morning", "dawn", "twilight", "sunrise", "day", "evening", "sunset", "dusk", "night", "shade", "tree shade", "shadow", "colored shadow", "window shadow", "dark", "darkness"],
