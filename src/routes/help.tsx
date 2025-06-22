@@ -29,10 +29,8 @@ function Help() {
           <li>
             "Ineffective" tags were manually marked as such if they seemed to not have the intended
             effect (medium strictly interpreted as an object, composition changed in ways irrelevant
-            to the tag, etc.). Don't trust these too much; results will vary with checkpoints, tag
-            weight, and seed. Some tags may also only work in combination with other tags that were
-            not included in the automated prompts; e.g. "xd" (meaning XD) might require "laughing"
-            to work properly. "sideways mouth" might require "from side".
+            to the tag, etc.). Take them with a grain of salt: results will vary with checkpoints,
+            tag weight, prompt, and seed.
           </li>
           <li>
             If you want to browse the imageset locally or otherwise process it in any way you'd
