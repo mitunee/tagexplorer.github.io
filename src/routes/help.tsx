@@ -14,7 +14,10 @@ function Help() {
         <h2 className="text-lg font-bold">Help</h2>
         <ul className="list-disc pl-5 flex flex-col gap-3">
           <li>Every gen on this site was made with Illustrious 1.1.</li>
-          <li>For full generation settings, gens on the home page contain ComfyUI workflows.</li>
+          <li>
+            For full generation settings, gens on the Heads, Styles, and Composition pages contain
+            ComfyUI workflows.
+          </li>
           <li>
             Artist gens don't contain workflows because they were compressed to save storage and
             bandwidth. You can download{' '}
