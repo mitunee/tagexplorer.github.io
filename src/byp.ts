@@ -15,7 +15,6 @@ export const focusTags: string[] = [
 ]
 
 export const faceTagsFailsList: string[] = [
-  ';\\)',
   ':>',
   '+_-',
   '>_@',
@@ -33,6 +32,7 @@ export const faceTagsFailsList: string[] = [
 
 export const faceTagsList: string[] = [
   'angry',
+  ';\\)',
   'anger vein',
   'annoyed',
   'clenched teeth',

@@ -218,9 +218,43 @@ export const imageCompositionFramingTheBody: TagGroup = {
   fails: ['eyes out of frame'],
 }
 
+export const eyes: TagGroup = {
+  slug: 'face_tags_-_eyes',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aeyes_tags',
+  tags: [
+    'half-closed eyes',
+    'bulging eyes',
+    'crazy eyes',
+    'jitome',
+    'squinting',
+    'empty eyes',
+    'dashed eyes',
+    'heart-shaped eyes',
+    'solid circle eyes',
+    'o o',
+    'solid oval eyes',
+    'tareme',
+    'tsurime',
+    'sanpaku',
+    'sparkling eyes',
+    'wince',
+    'averting eyes',
+    'cross-eyed',
+    'googly eyes',
+    'narrowed eyes',
+    'rolling eyes',
+    'sideways glance',
+    'upturned eyes',
+    'wall-eyed',
+    'wide-eyed',
+  ],
+  fails: ['spiral-only eyes', 'pleading eyes', 'unusually open eyes'],
+}
+
 export const faceTagGroups: TagGroup[] = [
   faceTags,
   faceTagsDrawingStyles,
+  eyes,
   faceTagsMulticoloredHair,
   faceTagsHairStyles,
   faceTagsHairBangsFrontOfHead,
