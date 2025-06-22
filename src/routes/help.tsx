@@ -20,9 +20,9 @@ function Help() {
           </li>
           <li>
             Artist gens don't contain workflows because they were compressed to save storage and
-            bandwidth. You can download{' '}
+            bandwidth. You can download this{' '}
             <a target="_blank" className="underline" href="/gens/sample_artist_workflow.png">
-              this sample workflow
+              sample workflow
             </a>{' '}
             for reference. The only difference between gens is the artist tag.
           </li>
@@ -40,13 +40,13 @@ function Help() {
           </li>
           <li>
             If you want to browse the imageset locally or otherwise process it in any way you'd
-            like, you can clone or download{' '}
+            like, you can clone or download the{' '}
             <a
               target="_blank"
               className="underline"
               href="https://github.com/tagexplorer/tagexplorer.github.io"
             >
-              the GitHub repository
+              GitHub repository
             </a>
             .
           </li>
