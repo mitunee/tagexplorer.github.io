@@ -220,6 +220,8 @@ export const imageCompositionFramingTheBody: TagGroup = {
 
 export const eyes: TagGroup = {
   slug: 'face_tags_-_eyes',
+  prompt: facePrompt,
+  portrait: true,
   wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aeyes_tags',
   tags: [
     'half-closed eyes',
@@ -247,14 +249,53 @@ export const eyes: TagGroup = {
     'upturned eyes',
     'wall-eyed',
     'wide-eyed',
+    'ringed eyes',
+    'squiggle eyes',
+    'bags under eyes',
+    'aegyo sal',
+    'bruised eye',
+    'flaming eyes',
+    'glowing eyes',
+    'button eyes',
+    'cephalopod eyes',
+    'compound eyes',
+    'horizontal pupils',
+    'lens eye',
+    'pixel eyes',
   ],
   fails: ['spiral-only eyes', 'pleading eyes', 'unusually open eyes'],
+}
+
+export const eyesPupils: TagGroup = {
+  slug: 'face_tags_-_eyes_-_pupils',
+  prompt: facePrompt,
+  portrait: true,
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aeyes_tags',
+  tags: [
+    'constricted pupils',
+    'dilated pupils',
+    'extra pupils',
+    'horizontal pupils',
+    'no pupils',
+    'slit pupils',
+    'symbol-shaped pupils',
+    'diamond-shaped pupils',
+    'flower-shaped pupils',
+    'heart-shaped pupils',
+    'star-shaped pupils',
+    'solid circle pupils',
+    'cross-shaped pupils',
+    'x-shaped pupils',
+    'snowflakes-shaped pupils',
+    'mismatched pupils',
+  ],
 }
 
 export const faceTagGroups: TagGroup[] = [
   faceTags,
   faceTagsDrawingStyles,
   eyes,
+  eyesPupils,
   faceTagsMulticoloredHair,
   faceTagsHairStyles,
   faceTagsHairBangsFrontOfHead,
