@@ -616,7 +616,7 @@ export const TagGroupBlock = ({
             }}
           >
             {tagsToShow.map((tag, i) => (
-              <Gen key={i} tag={tag} slug={slug} webp={webp} />
+              <Gen key={i + tag} tag={tag} slug={slug} webp={webp} />
             ))}
           </div>
           {artists && <PageSelector page={page} maxPage={pages.length} onSubmit={setPage} />}
