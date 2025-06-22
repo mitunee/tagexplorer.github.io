@@ -16,7 +16,7 @@ const facePrompt =
   'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, upper body, straight-on, looking at viewer, simple background,'
 
 export const faceTags: TagGroup = {
-  slug: 'face_tags',
+  slug: 'face_tags_-_expressions',
   wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aface_tags',
   portrait: true,
   prompt: facePrompt,
