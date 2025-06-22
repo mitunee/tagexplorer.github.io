@@ -17,7 +17,13 @@ import {
   gensPerPageAtom,
   areSettingsCollapsed,
 } from './globalState'
-import { type TagGroup, allTagGroups, defaultPrompt } from './tagGroups'
+import {
+  type TagGroup,
+  faceTagGroups,
+  compositionTagGroups,
+  styleTagGroups,
+  defaultPrompt,
+} from './tagGroups'
 import Fuse from 'fuse.js'
 import artistMetadata from './assets/artistTags100posts.json'
 import Rand from 'rand-seed'
@@ -38,7 +44,7 @@ export const Gen = ({
   const tag = isFail ? tagUnchecked.slice(6) : tagUnchecked === '_base' ? 'no tag' : tagUnchecked
   const failStyle = isFail ? { color: 'var(--fail)' } : {}
   const ext = webp ? '.webp' : '.png'
-  const imgUrl = encodeURI(`/gens/${slug}/${tag}_00001_${ext}`)
+  const imgUrl = encodeURI(`/gens/${slug}/${tag.replace(/\//g, '%2F')}_00001_${ext}`)
   const handleClick = () => {
     switch (onGenClick) {
       case 'OpenImage':
@@ -142,8 +148,6 @@ export const Pill = ({ label: tag, ...props }: PillProps) => {
   )
 }
 
-const allSlugs = allTagGroups.map((tagGroup) => tagGroup.slug)
-
 export interface SearchParams {
   tagGroupFilter?: string
   tagFilter?: string
@@ -157,12 +161,23 @@ interface AnyRoute {
   useSearch: () => SearchParams
 }
 
-export const Settings = (props: { mode: 'Home' | 'Artists'; route: AnyRoute }) => {
+export const Settings = (props: {
+  mode: 'Heads' | 'Styles' | 'Composition' | 'Artists'
+  route: AnyRoute
+}) => {
   const [imageSize, setImageSize] = useAtom(imageSizeAtom)
   const [onGenClick, setOnGenClick] = useAtom(onGenClickAtom)
   const [ineffectiveTags, setIneffectiveTags] = useAtom(ineffectiveTagsAtom)
   const [artistOrder, setArtistOrder] = useAtom(artistOrderAtom)
   const setCollapsedGroups = useSetAtom(collapsedGroupsAtom)
+  const allSlugs =
+    props.mode === 'Heads'
+      ? faceTagGroups.map((tagGroup) => tagGroup.slug)
+      : props.mode === 'Styles'
+        ? styleTagGroups.map((tagGroup) => tagGroup.slug)
+        : props.mode === 'Composition'
+          ? compositionTagGroups.map((tagGroup) => tagGroup.slug)
+          : []
   const collapseAll = () => setCollapsedGroups(allSlugs)
   const expandAll = () => setCollapsedGroups([])
   // eslint-disable-next-line
@@ -237,7 +252,7 @@ export const Settings = (props: { mode: 'Home' | 'Artists'; route: AnyRoute }) =
                 <option value="OpenDanbooru">Danbooru search</option>
               </select>
             </div>
-            {props.mode === 'Home' && (
+            {props.mode !== 'Artists' && (
               <div className="flex items-start flex-wrap flex-col">
                 <label htmlFor="ineffectiveTags" className="font-semibold">
                   Ineffective tags
@@ -314,7 +329,7 @@ export const Settings = (props: { mode: 'Home' | 'Artists'; route: AnyRoute }) =
             )}
           </div>
           <div className="flex gap-2 items-center flex-wrap">
-            {props.mode === 'Home' && (
+            {props.mode !== 'Artists' && (
               <>
                 <Pill
                   label="Collapse all"
@@ -340,7 +355,7 @@ export const Settings = (props: { mode: 'Home' | 'Artists'; route: AnyRoute }) =
         <div className="text-xs">
           Search queries are stored in the URL, so you can bookmark or share them.
         </div>
-        {props.mode === 'Home' && (
+        {props.mode !== 'Artists' && (
           <div className="flex flex-col ">
             <label htmlFor="filterTagGroups" className="text-xs">
               Search tag groups:
@@ -574,7 +589,7 @@ export const TagGroupBlock = ({
       >
         <div className="flex flex-col gap-2 w-full">
           {showPrompt && (
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-end whitespace-pre-wrap">
               <div
                 className="text-gray-700 dark:text-neutral-300 font-mono max-w-[400px]"
                 style={{ fontSize: '0.7rem', textAlign: 'right' }}

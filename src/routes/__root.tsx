@@ -17,24 +17,29 @@ function Menu() {
   return (
     <div data-theme={theme}>
       <div
-        data-theme={theme}
-        className="py-4 flex gap-5 w-full justify-center custom-shadow-sm relative bg"
+        className="flex custom-shadow-sm bg w-full py-3 items-center"
         style={{ borderBottom: 'var(--subtle-border)' }}
       >
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{' '}
-        <Link to="/artists" className="[&.active]:font-bold">
-          Artists
-        </Link>
-        {/*
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-          */}
-        <div className="absolute right-[1em] top-1/2 -translate-y-1/2">
+        <div className="flex grow gap-5 w-full justify-center items-center flex-wrap">
+          <Link to="/" className="[&.active]:font-bold">
+            Heads
+          </Link>{' '}
+          <Link to="/styles" className="[&.active]:font-bold">
+            Styles
+          </Link>{' '}
+          <Link to="/composition" className="[&.active]:font-bold">
+            Composition
+          </Link>{' '}
+          <Link to="/artists" className="[&.active]:font-bold">
+            Artists
+          </Link>
+          <Link to="/help" className="[&.active]:font-bold">
+            Help
+          </Link>
+        </div>
+        <div className="px-3">
           <button
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 cursor-pointer"
+            className="rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 cursor-pointer"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           >
             {theme === 'light' ? <Sun size={20} /> : <Moon size={20} />}

@@ -1,5 +1,6 @@
 import { atomWithStorage } from 'jotai/utils'
 import { atom } from 'jotai'
+import { faceTagGroups, styleTagGroups, compositionTagGroups } from './tagGroups'
 
 export type Theme = 'light' | 'dark'
 
@@ -24,7 +25,13 @@ export const ineffectiveTagsAtom = atomWithStorage<IneffectiveTags>(
   'IneffectiveTagsHide',
 )
 
-export const collapsedGroupsAtom = atomWithStorage<string[]>('collapsedGroups', [])
+export const collapsedGroupsAtom = atomWithStorage<string[]>(
+  'collapsedGroups',
+  [faceTagGroups, styleTagGroups, compositionTagGroups]
+    .map((superGroup) => superGroup.map((g) => g.slug))
+    .slice(1)
+    .flat(),
+)
 
 export type ArtistOrder =
   | 'Alphabetical'

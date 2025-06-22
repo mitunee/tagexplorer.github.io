@@ -9,18 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StylesRouteImport } from './routes/styles'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ArtistsRouteImport } from './routes/artists'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StylesRoute = StylesRouteImport.update({
+  id: '/styles',
+  path: '/styles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompositionRoute = CompositionRouteImport.update({
+  id: '/composition',
+  path: '/composition',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArtistsRoute = ArtistsRouteImport.update({
   id: '/artists',
   path: '/artists',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,48 +43,70 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/artists': typeof ArtistsRoute
+  '/composition': typeof CompositionRoute
+  '/help': typeof HelpRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/artists': typeof ArtistsRoute
+  '/composition': typeof CompositionRoute
+  '/help': typeof HelpRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/artists': typeof ArtistsRoute
+  '/composition': typeof CompositionRoute
+  '/help': typeof HelpRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/artists'
+  fullPaths: '/' | '/artists' | '/composition' | '/help' | '/styles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/artists'
-  id: '__root__' | '/' | '/about' | '/artists'
+  to: '/' | '/artists' | '/composition' | '/help' | '/styles'
+  id: '__root__' | '/' | '/artists' | '/composition' | '/help' | '/styles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   ArtistsRoute: typeof ArtistsRoute
+  CompositionRoute: typeof CompositionRoute
+  HelpRoute: typeof HelpRoute
+  StylesRoute: typeof StylesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/styles': {
+      id: '/styles'
+      path: '/styles'
+      fullPath: '/styles'
+      preLoaderRoute: typeof StylesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/composition': {
+      id: '/composition'
+      path: '/composition'
+      fullPath: '/composition'
+      preLoaderRoute: typeof CompositionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/artists': {
       id: '/artists'
       path: '/artists'
       fullPath: '/artists'
       preLoaderRoute: typeof ArtistsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,8 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   ArtistsRoute: ArtistsRoute,
+  CompositionRoute: CompositionRoute,
+  HelpRoute: HelpRoute,
+  StylesRoute: StylesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
