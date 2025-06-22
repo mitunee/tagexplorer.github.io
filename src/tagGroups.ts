@@ -133,7 +133,7 @@ export const imageCompositionPerspectiveDepth: TagGroup = {
   slug: 'image_composition_-_perspective-depth',
   wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aimage_composition',
   // prettier-ignore
-  tags: ["atmospheric perspective", "fisheye", "panorama", "perspective", "vanishing point", "variations"],
+  tags: ["atmospheric perspective", "fisheye", "panorama", "perspective", "vanishing point", "variations", "depth of field", "blurry background", "blurry foreground"],
 }
 
 export const imageCompositionComposition: TagGroup = {
