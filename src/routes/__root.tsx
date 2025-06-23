@@ -3,6 +3,8 @@ import { Sun, Moon } from 'lucide-react'
 import { themeAtom, type Theme } from '../globalState'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
+import '../styles/index.css'
+import '../styles/normalize.css'
 
 export const Route = createRootRoute({
   component: Menu,
@@ -36,6 +38,9 @@ function Menu() {
               </Link>{' '}
               <Link to="/composition" className="[&.active]:font-bold">
                 Composition
+              </Link>{' '}
+              <Link to="/poses" className="[&.active]:font-bold">
+                Poses
               </Link>{' '}
               <Link to="/artists" className="[&.active]:font-bold">
                 Artists

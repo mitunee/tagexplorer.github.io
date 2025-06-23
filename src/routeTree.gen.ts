@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StylesRouteImport } from './routes/styles'
+import { Route as PosesRouteImport } from './routes/poses'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ArtistsRouteImport } from './routes/artists'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StylesRoute = StylesRouteImport.update({
   id: '/styles',
   path: '/styles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PosesRoute = PosesRouteImport.update({
+  id: '/poses',
+  path: '/poses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HelpRoute = HelpRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
   '/help': typeof HelpRoute
+  '/poses': typeof PosesRoute
   '/styles': typeof StylesRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
   '/help': typeof HelpRoute
+  '/poses': typeof PosesRoute
   '/styles': typeof StylesRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,22 @@ export interface FileRoutesById {
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
   '/help': typeof HelpRoute
+  '/poses': typeof PosesRoute
   '/styles': typeof StylesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/artists' | '/composition' | '/help' | '/styles'
+  fullPaths: '/' | '/artists' | '/composition' | '/help' | '/poses' | '/styles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/artists' | '/composition' | '/help' | '/styles'
-  id: '__root__' | '/' | '/artists' | '/composition' | '/help' | '/styles'
+  to: '/' | '/artists' | '/composition' | '/help' | '/poses' | '/styles'
+  id:
+    | '__root__'
+    | '/'
+    | '/artists'
+    | '/composition'
+    | '/help'
+    | '/poses'
+    | '/styles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +92,7 @@ export interface RootRouteChildren {
   ArtistsRoute: typeof ArtistsRoute
   CompositionRoute: typeof CompositionRoute
   HelpRoute: typeof HelpRoute
+  PosesRoute: typeof PosesRoute
   StylesRoute: typeof StylesRoute
 }
 
@@ -86,6 +103,13 @@ declare module '@tanstack/react-router' {
       path: '/styles'
       fullPath: '/styles'
       preLoaderRoute: typeof StylesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poses': {
+      id: '/poses'
+      path: '/poses'
+      fullPath: '/poses'
+      preLoaderRoute: typeof PosesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/help': {
@@ -124,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtistsRoute: ArtistsRoute,
   CompositionRoute: CompositionRoute,
   HelpRoute: HelpRoute,
+  PosesRoute: PosesRoute,
   StylesRoute: StylesRoute,
 }
 export const routeTree = rootRouteImport

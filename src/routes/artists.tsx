@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Settings, TagGroupBlock } from '../Components'
+import { TagGroupBlock } from '../components/TagGroupBlock'
+import { Settings } from '../components/Settings'
 import { artistTagStrings } from '../artistTagStrings'
 import { noOverride, type TagGroup } from '../tagGroups'
 
@@ -21,7 +22,7 @@ const artistTagGroup: TagGroup = {
 function Artists() {
   return (
     <div className="py-3 px-5 bg">
-      <Settings mode="Artists" route={Route} />
+      <Settings collapsibleGroupSlugs={[]} artistPage={true} route={Route} />
       <div>
         <TagGroupBlock tagGroup={artistTagGroup} route={Route} webp={true} artists={true} />
       </div>

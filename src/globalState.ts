@@ -46,3 +46,10 @@ export const artistOrderAtom = atomWithStorage<ArtistOrder>('artistOrder', 'Alph
 export const gensPerPageAtom = atomWithStorage<number>('gensPerPage', 50)
 
 export const areSettingsCollapsed = atomWithStorage<boolean>('areSettingsCollapsed', false)
+
+export interface SearchParams {
+  tagGroupFilter?: string
+  tagFilter?: string
+  randomSeed?: string
+  page?: number
+}

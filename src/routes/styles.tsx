@@ -1,8 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import '../index.css'
-import '../normalize.css'
 import { styleTagGroups } from '../tagGroups'
-import { Settings, TagGroupBlock } from '../Components'
+import { TagGroupBlock } from '../components/TagGroupBlock'
+import { Settings } from '../components/Settings'
 
 export const Route = createFileRoute('/styles')({
   component: Styles,
@@ -14,7 +13,7 @@ export const Route = createFileRoute('/styles')({
 function Styles() {
   return (
     <div className="py-3 px-5 bg">
-      <Settings mode="Styles" route={Route} />
+      <Settings collapsibleGroupSlugs={styleTagGroups.map((g) => g.slug)} route={Route} />
       <div>
         {styleTagGroups.map((tagGroup, i) => (
           <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} />

@@ -1,4 +1,4 @@
-import { faceTagsFailsList, faceTagsList, focusTags } from './byp'
+import { faceTagsFailsList, faceTagsList, focusTags } from './nonoWords'
 
 export interface TagGroup {
   slug: string
@@ -417,3 +417,5 @@ export const compositionTagGroups: TagGroup[] = [
   imageCompositionPrintsPatterns,
   imageCompositionFramingTheBody,
 ]
+
+// POSES

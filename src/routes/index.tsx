@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import '../index.css'
-import '../normalize.css'
+import '../styles/normalize.css'
+import '../styles/index.css'
 import { faceTagGroups } from '../tagGroups'
-import { Settings, TagGroupBlock } from '../Components'
+import { TagGroupBlock } from '../components/TagGroupBlock'
+import { Settings } from '../components/Settings'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -14,7 +15,7 @@ export const Route = createFileRoute('/')({
 function Index() {
   return (
     <div className="py-3 px-5 bg">
-      <Settings mode="Heads" route={Route} />
+      <Settings collapsibleGroupSlugs={faceTagGroups.map((g) => g.slug)} route={Route} />
       <div>
         {faceTagGroups.map((tagGroup, i) => (
           <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} />

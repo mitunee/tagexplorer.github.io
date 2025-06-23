@@ -1,21 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { compositionTagGroups } from '../tagGroups'
 import { TagGroupBlock } from '../components/TagGroupBlock'
 import { Settings } from '../components/Settings'
 
-export const Route = createFileRoute('/composition')({
-  component: Composition,
+export const Route = createFileRoute('/poses')({
+  component: Poses,
   head: () => ({
-    meta: [{ title: 'Composition - tagexplorer' }],
+    meta: [{ title: 'Poses - tagexplorer' }],
   }),
 })
 
-function Composition() {
+function Poses() {
   return (
     <div className="py-3 px-5 bg">
-      <Settings collapsibleGroupSlugs={compositionTagGroups.map((g) => g.slug)} route={Route} />
+      <Settings collapsibleGroupSlugs={['TODO']} route={Route} />
       <div>
-        {compositionTagGroups.map((tagGroup, i) => (
+        {[].map((tagGroup, i) => (
           <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} />
         ))}
       </div>
