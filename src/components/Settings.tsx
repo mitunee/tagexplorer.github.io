@@ -156,11 +156,13 @@ export const Settings = (props: {
                   label="Collapse all"
                   className="cursor-pointer text-nowrap"
                   onClick={collapseAll}
+                  id="collapseAllPill"
                 />
                 <Pill
                   label="Expand all"
                   className="cursor-pointer text-nowrap"
                   onClick={expandAll}
+                  id="expandAllPill"
                 />
               </>
             )}
@@ -178,6 +180,7 @@ export const Settings = (props: {
         </div>
         {!props.artistPage && (
           <SearchBar
+            id="filterTagGroups"
             label="Search tag groups:"
             value={searchParams.tagGroupFilter ?? ''}
             onInput={(newVal) => {
@@ -191,6 +194,7 @@ export const Settings = (props: {
           />
         )}
         <SearchBar
+          id="filterTags"
           label="Search tags:"
           value={searchParams.tagFilter ?? ''}
           onInput={(newVal) => {
@@ -235,23 +239,24 @@ const DropdownSetting = <T extends string>(props: {
 )
 
 const SearchBar = (props: {
+  id: string
   label: string
   value: string
   onInput: (newVal: string) => void
   onClear: () => void
 }) => (
   <div className="flex flex-col ">
-    <label htmlFor="filterTagGroups" className="text-xs">
+    <label htmlFor={props.id} className="text-xs">
       {props.label}
     </label>
     <div className="flex gap-2 items-center">
       <input
-        id="filterTagGroups"
         type="text"
         className="rounded py-[1px] px-2 w-full max-w-[200px] mt-1"
         style={{ border: 'var(--subtle-border)', fontSize: '0.75rem' }}
         value={props.value}
         onChange={(e) => props.onInput(e.target.value.toLowerCase())}
+        id={props.id}
       />
       <Pill
         label="Clear"

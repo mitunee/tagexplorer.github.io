@@ -39,9 +39,11 @@ function Menu() {
               <Link to="/composition" className="[&.active]:font-bold">
                 Composition
               </Link>{' '}
+              {/*
               <Link to="/poses" className="[&.active]:font-bold">
                 Poses
               </Link>{' '}
+                */}
               <Link to="/artists" className="[&.active]:font-bold">
                 Artists
               </Link>

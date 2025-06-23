@@ -274,6 +274,7 @@ const Gen = ({
       className={[
         'flex flex-col bg-white dark:bg-black rounded-lg overflow-hidden my-1 custom-shadow-sm cursor-pointer relative',
         'full-opacity-on-hover-parent',
+        'gen-card',
       ].join(' ')}
       onClick={handleClick}
       onAuxClick={handleMiddleClick}
