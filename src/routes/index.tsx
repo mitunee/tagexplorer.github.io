@@ -17,7 +17,7 @@ function Index() {
       <Settings mode="Heads" route={Route} />
       <div>
         {faceTagGroups.map((tagGroup, i) => (
-          <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} portrait={true} />
+          <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} />
         ))}
       </div>
     </div>

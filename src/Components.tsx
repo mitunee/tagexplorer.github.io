@@ -429,13 +429,11 @@ export const TagGroupBlock = ({
   route,
   webp,
   artists,
-  portrait,
 }: {
   tagGroup: TagGroup
   route: AnyRoute
   webp?: boolean
   artists?: boolean
-  portrait?: boolean
 }) => {
   const { slug, wikiPage, prompt, tags, fails } = tagGroup
   const searchParams: SearchParams = route.useSearch()
@@ -450,9 +448,9 @@ export const TagGroupBlock = ({
   const favoritesOnly = useAtomValue(favoritesOnlyAtom)
   const tagsWithIneffective = useMemo(
     () => [
-      ...tags,
+      ...tags.map((t) => t.name),
       ...(ineffectiveTags === 'IneffectiveTagsShow' || favoritesOnly
-        ? (fails ?? []).map((t) => `_fail_${t}`)
+        ? (fails ?? []).map((t) => `_fail_${t.name}`)
         : []),
     ],
     [tags, fails, ineffectiveTags, favoritesOnly],
@@ -625,7 +623,7 @@ export const TagGroupBlock = ({
             }}
           >
             {tagsToShow.map((tag, i) => (
-              <Gen key={i + tag} tag={tag} slug={slug} webp={webp} portrait={portrait} />
+              <Gen key={i + tag} tag={tag} slug={slug} webp={webp} portrait={tagGroup.portrait} />
             ))}
           </div>
           {artists && <PageSelector page={page} maxPage={pages.length} onSubmit={setPage} />}

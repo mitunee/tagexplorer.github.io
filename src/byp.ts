@@ -1,20 +1,47 @@
 // this file exists to contain no-no words that cause Github Copilot to refuse to function
 
-export const focusTags: string[] = [
+interface Tag {
+  name: string
+  positivePromptOverride?: string
+  negativePromptOverride?: string
+}
+
+const noOverride = (tag: string): Tag => ({ name: tag })
+
+export const focusTags: Tag[] = [
   'armpit focus',
   'ass focus',
   'back focus',
   'breast focus',
-  'eye focus',
   'foot focus',
-  'hand focus',
   'hip focus',
-  'navel focus',
-  'pectoral focus',
   'thigh focus',
 ]
+  .map(noOverride)
+  .concat([
+    {
+      name: 'pectoral focus',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, 1girl, solo, medium breasts, t-shirt,  (pectoral focus:1.1),',
+    },
+    {
+      name: 'hand focus',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, 1girl, solo,  (hand focus:1.1)',
+    },
+    {
+      name: 'navel focus',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, 1girl, solo,  (navel focus:1.1)',
+    },
+    {
+      name: 'eye focus',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, 1girl, solo,  (eye focus:1.1),',
+    },
+  ])
 
-export const faceTagsFailsList: string[] = [
+export const faceTagsFailsList: Tag[] = [
   ':>',
   '+_-',
   '>_@',
@@ -28,9 +55,9 @@ export const faceTagsFailsList: string[] = [
   'face of the people who sank all their money into the fx',
   'uwu',
   'x3',
-]
+].map(noOverride)
 
-export const faceTagsList: string[] = [
+export const faceTagsList: Tag[] = [
   'angry',
   ';\\)',
   'anger vein',
@@ -116,7 +143,6 @@ export const faceTagsList: string[] = [
   'smug',
   ':d',
   ';d',
-  'xd',
   ':3',
   ';3',
   ':p',
@@ -144,8 +170,6 @@ export const faceTagsList: string[] = [
   '0_0',
   '|_|',
   '._.',
-  'solid circle eyes',
-  'heart-shaped eyes',
   '^_^',
   '\\\\\\(^o^\\)/',
   '^q^',
@@ -164,6 +188,28 @@ export const faceTagsList: string[] = [
   'henohenomoheji',
   'nonowa',
   'smiley face',
-  'troll face',
   'uso da',
 ]
+  .map(noOverride)
+  .concat([
+    {
+      name: 'xd',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, upper body, straight-on, looking at viewer, simple background, laughing, (xd:1.1),',
+    },
+    {
+      name: 'solid circle eyes',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, upper body, straight-on, looking at viewer, simple background, (solid circle eyes:1),',
+    },
+    {
+      name: 'heart-shaped eyes',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, upper body, straight-on, looking at viewer, simple background, open mouth, (heart-shaped eyes:1),',
+    },
+    {
+      name: 'troll face',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, upper body, straight-on, looking at viewer, simple background, smile, (troll face:1.1),',
+    },
+  ])
