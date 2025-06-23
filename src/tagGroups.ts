@@ -395,9 +395,22 @@ const fullBodyPrompt =
 const fullBody2girlsPrompt =
   'masterpiece, best quality, amazing quality, official art, 2girls, white shirt, bob cut, black hair, blue pants, simple background,'
 
+const fullBodyNgirlsPrompt = (n: number) =>
+  `masterpiece, best quality, amazing quality, official art, ${n}girls, white shirt, bob cut, black hair, blue pants, simple background,`
+
 const withFullBody2girlsOverride = (tag: string) => ({
   name: tag,
   positivePromptOverride: `${fullBody2girlsPrompt} (${tag}:1.1),`,
+})
+
+const withFullBodyNgirlsOverride = (n: number, tag: string) => ({
+  name: tag,
+  positivePromptOverride: `${fullBodyNgirlsPrompt(n)} (${tag}:1.1),`,
+})
+
+const withFullBodyOverride = (tag: string) => ({
+  name: tag,
+  positivePromptOverride: `${fullBodyPrompt} (${tag}:1.1),`,
 })
 
 export const postureBasicPositionsTags: TagGroup = {
@@ -529,7 +542,6 @@ export const postureArmsTags: TagGroup = {
     'arms behind back',
     'arm up',
     'arm behind head',
-    'akanbe',
     'salute',
     'shushing',
     'v over eye',
@@ -565,7 +577,7 @@ export const postureArmsTags: TagGroup = {
     'own hands together',
     'star hands',
   ].map(noOverride),
-  fails: ['airplane arms', 'carry me', 'praise the sun'].map(noOverride),
+  fails: ['airplane arms', 'carry me', 'praise the sun', 'akanbe'].map(noOverride),
 }
 
 export const postureHipsTags: TagGroup = {
@@ -718,6 +730,177 @@ export const posturePosesTags: TagGroup = {
     'kujou karen pose',
   ].map(noOverride),
 }
+
+// gestures
+
+//// Gestures encompassing at least two hands
+
+// TODO: override needed because many gestures involve two or more characters
+export const gesturesTwoHandsTags: TagGroup = {
+  slug: 'gestures_-_gestures_encompassing_at_least_two_hands',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Agestures',
+  portrait: true,
+  prompt: facePrompt,
+  tags: [
+    'circle hands',
+    'clenched hands',
+    'cupping hands',
+    'double finger gun',
+    'double thumbs down',
+    'double thumbs up',
+    'double v',
+    'fidgeting',
+    'finger counting',
+    'finger frame',
+    'fist in hand',
+    'groping motion',
+    'heart hands',
+    'horns pose',
+    'own hands clasped',
+    'palm-fist greeting',
+    'palm-fist tap',
+    'penetration gesture',
+    'pinky swear',
+    'rabbit pose',
+    'shadow puppet',
+    'steepled fingers',
+    'x arms',
+    'x fingers',
+  ]
+    .map(noOverride)
+    .concat([
+      withFullBody2girlsOverride('fist bump'),
+      withFullBodyOverride('heart arms'),
+      withFullBody2girlsOverride('heart hands duo'),
+      withFullBodyNgirlsOverride(3, 'heart hands trio'),
+      withFullBodyNgirlsOverride(4, 'heart hands quartet'),
+      withFullBody2girlsOverride('high five'),
+    ]),
+  fails: [
+    'air quotes',
+    'carry me',
+    'hand glasses',
+    'kitsune no mado',
+    'tsuki ni kawatte oshioki yo',
+  ]
+    .map(noOverride)
+    .concat([withFullBody2girlsOverride('noogie')]),
+}
+
+// Gestures encompassing only one hand
+export const gesturesOneHandTags: TagGroup = {
+  slug: 'gestures_-_gestures_encompassing_only_one_hand',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Agestures',
+  portrait: true,
+  prompt: facePrompt,
+  tags: [
+    // One open finger
+    'beckoning',
+    'twirling hair',
+    'index finger raised',
+    'middle finger',
+    'pinky out',
+    'pointing',
+    'pointing at self',
+    'pointing at viewer',
+    'pointing down',
+    'pointing forward',
+    'pointing up',
+    'kamina pose',
+    'shushing',
+    'thumbs down',
+    'thumbs up',
+    // Two open fingers
+    '\\n/',
+    'crossed fingers',
+    'finger gun',
+    'finger heart',
+    'fox shadow puppet',
+    'shaka sign',
+    'two-finger salute',
+    'l hand',
+    'v',
+    'gyaru v',
+    'v over eye',
+    'v over mouth',
+    // Three open fingers
+    '\\m/',
+    'middle w',
+    'money gesture',
+    'ok sign',
+    'pinching gesture',
+    'w',
+    // Whole open hand
+    'claw pose',
+    'facepalm',
+    'open hand',
+    'reaching',
+    'salute',
+    'spread fingers',
+    'stop \\(gesture\\)',
+    'straight-arm salute',
+    'vulcan salute',
+    'waving',
+    // Whole closed hand
+    'clenched hand',
+    'curled fingers',
+    'dojikko pose',
+    'paw pose',
+    'power fist',
+    'raised fist',
+    // Variable number of open fingers of one hand
+    'cunnilingus gesture',
+    'fellatio gesture',
+    'handjob gesture',
+    'hat tip',
+    'oral invitation',
+    'oral simulation',
+    'shocker \\(gesture\\)',
+    'stroking own chin',
+  ]
+    .map(noOverride)
+    .concat([
+      withFullBody2girlsOverride('pointing at another'),
+      withFullBody2girlsOverride('pointing spider-man \\(meme\\)'),
+    ]),
+  fails: [
+    '\\||/',
+    '\\|||/',
+    'akanbe',
+    'fig sign',
+    'inward v',
+    'number four \\(asl\\)',
+    'ohikaenasutte',
+    'saturday night fever',
+  ].map(noOverride),
+}
+
+export const gesturesOtherTags: TagGroup = {
+  slug: 'gestures_-_other_gestures',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Agestures',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'bowing',
+    'curtsey',
+    'distress hand signal',
+    'heart tail',
+    'holding with gesture',
+    'orchid fingers',
+    'shrugging',
+    'toe-point',
+    'victory pose',
+  ]
+    .map(noOverride)
+    .concat([withFullBody2girlsOverride('heart tail duo')]),
+  fails: ['air guitar', 'kuji-in'].map(noOverride),
+}
+
+export const gesturesTagGroups: TagGroup[] = [
+  gesturesTwoHandsTags,
+  gesturesOneHandTags,
+  gesturesOtherTags,
+]
 
 export const postureTagGroups: TagGroup[] = [
   postureBasicPositionsTags,

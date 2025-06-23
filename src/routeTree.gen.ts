@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StylesRouteImport } from './routes/styles'
 import { Route as PosturesRouteImport } from './routes/postures'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as GesturesRouteImport } from './routes/gestures'
 import { Route as CompositionRouteImport } from './routes/composition'
 import { Route as ArtistsRouteImport } from './routes/artists'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const PosturesRoute = PosturesRouteImport.update({
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GesturesRoute = GesturesRouteImport.update({
+  id: '/gestures',
+  path: '/gestures',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompositionRoute = CompositionRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
+  '/gestures': typeof GesturesRoute
   '/help': typeof HelpRoute
   '/postures': typeof PosturesRoute
   '/styles': typeof StylesRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
+  '/gestures': typeof GesturesRoute
   '/help': typeof HelpRoute
   '/postures': typeof PosturesRoute
   '/styles': typeof StylesRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artists': typeof ArtistsRoute
   '/composition': typeof CompositionRoute
+  '/gestures': typeof GesturesRoute
   '/help': typeof HelpRoute
   '/postures': typeof PosturesRoute
   '/styles': typeof StylesRoute
@@ -78,16 +87,25 @@ export interface FileRouteTypes {
     | '/'
     | '/artists'
     | '/composition'
+    | '/gestures'
     | '/help'
     | '/postures'
     | '/styles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/artists' | '/composition' | '/help' | '/postures' | '/styles'
+  to:
+    | '/'
+    | '/artists'
+    | '/composition'
+    | '/gestures'
+    | '/help'
+    | '/postures'
+    | '/styles'
   id:
     | '__root__'
     | '/'
     | '/artists'
     | '/composition'
+    | '/gestures'
     | '/help'
     | '/postures'
     | '/styles'
@@ -97,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtistsRoute: typeof ArtistsRoute
   CompositionRoute: typeof CompositionRoute
+  GesturesRoute: typeof GesturesRoute
   HelpRoute: typeof HelpRoute
   PosturesRoute: typeof PosturesRoute
   StylesRoute: typeof StylesRoute
@@ -123,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gestures': {
+      id: '/gestures'
+      path: '/gestures'
+      fullPath: '/gestures'
+      preLoaderRoute: typeof GesturesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/composition': {
@@ -153,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtistsRoute: ArtistsRoute,
   CompositionRoute: CompositionRoute,
+  GesturesRoute: GesturesRoute,
   HelpRoute: HelpRoute,
   PosturesRoute: PosturesRoute,
   StylesRoute: StylesRoute,

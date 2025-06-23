@@ -42,6 +42,9 @@ function Menu() {
               <Link to="/postures" className="[&.active]:font-bold">
                 Postures
               </Link>{' '}
+              <Link to="/gestures" className="[&.active]:font-bold">
+                Gestures
+              </Link>{' '}
               <Link to="/artists" className="[&.active]:font-bold">
                 Artists
               </Link>
