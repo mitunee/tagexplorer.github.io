@@ -385,6 +385,354 @@ export const eyesPupils: TagGroup = {
   tags: [ 'constricted pupils', 'dilated pupils', 'extra pupils', 'horizontal pupils', 'no pupils', 'slit pupils', 'symbol-shaped pupils', 'diamond-shaped pupils', 'flower-shaped pupils', 'heart-shaped pupils', 'star-shaped pupils', 'solid circle pupils', 'cross-shaped pupils', 'x-shaped pupils', 'snowflakes-shaped pupils', 'mismatched pupils', ].map(noOverride),
 }
 
+/*
+ * POSTURE (WIP)
+ */
+
+const fullBodyPrompt =
+  'masterpiece, best quality, amazing quality, official art, 1girl, solo, white shirt, bob cut, black hair, blue pants, simple background,'
+
+const fullBody2girlsPrompt =
+  'masterpiece, best quality, amazing quality, official art, 2girls, white shirt, bob cut, black hair, blue pants, simple background,'
+
+const withFullBody2girlsOverride = (tag: string) => ({
+  name: tag,
+  positivePromptOverride: `${fullBody2girlsPrompt} (${tag}:1.1),`,
+})
+
+export const postureBasicPositionsTags: TagGroup = {
+  slug: 'posture_-_basic_positions',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'kneeling',
+    'on one knee',
+    'lying',
+    'crossed legs',
+    'fetal position',
+    'on back',
+    'on side',
+    'on stomach',
+    'sitting',
+    'butterfly sitting',
+    'figure four sitting',
+    'indian style',
+    'lotus position',
+    'hugging own legs',
+    'reclining',
+    'seiza',
+    'wariza',
+    'yokozuwari',
+    'standing',
+    'balancing',
+    'legs apart',
+    'standing on one leg',
+  ]
+    .map(noOverride)
+    .concat(
+      [
+        'sitting on person',
+        'sitting on head',
+        'sitting on lap',
+        'shoulder carry',
+        'human chair',
+        'straddling',
+        'thigh straddling',
+        'upright straddle',
+      ].map(withFullBody2girlsOverride),
+    ),
+}
+
+export const postureMovementOfTheBodyTags: TagGroup = {
+  slug: 'posture_-_movement_of_the_body',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'balancing',
+    'crawling',
+    'midair',
+    'falling',
+    'floating',
+    'flying',
+    'jumping',
+    'hopping',
+    'pouncing',
+    'running',
+    'walking',
+    'wallwalking',
+  ].map(noOverride),
+}
+
+export const postureOtherPosturesWholeBodyTags: TagGroup = {
+  slug: 'posture_-_other_postures_potentially_involving_the_whole_body',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'all fours',
+    'top-down bottom-up',
+    'prostration',
+    'bear position',
+    'bowlegged pose',
+    'chest stand',
+    'chest stand handstand',
+    'cowering',
+    'crucifixion',
+    'fighting stance',
+    'battoujutsu stance',
+    'spread eagle position',
+    'squatting',
+    'stretching',
+    'superhero landing',
+    'upside-down',
+    'handstand',
+    'headstand',
+    'yoga',
+    'scorpion pose',
+  ]
+    .map(noOverride)
+    .concat([
+      {
+        name: 'faceplant',
+        positivePromptOverride: `${fullBodyPrompt} upside down, (faceplant:1.1),`,
+      },
+    ]),
+  fails: ['ruppelbend', 'quadfold', 'full scorpion', 'triplefold'].map(noOverride),
+}
+
+export const postureTorsoInclinationTags: TagGroup = {
+  slug: 'posture_-_torso_inclination',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'arched back',
+    'bent back',
+    'bent over',
+    'leaning back',
+    'leaning forward',
+    'slouching',
+    'sway back',
+    'twisted torso',
+  ].map(noOverride),
+}
+
+export const postureArmsTags: TagGroup = {
+  slug: 'posture_-_arms',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: facePrompt,
+  tags: [
+    'arm behind back',
+    'arms behind back',
+    'arm up',
+    'arm behind head',
+    'akanbe',
+    'salute',
+    'shushing',
+    'v over eye',
+    'waving',
+    'victory pose',
+    'arms up',
+    '\\o/',
+    'arms behind head',
+    'heart hands',
+    'finger frame',
+    'horns pose',
+    'outstretched arm',
+    'outstretched arms',
+    'spread arms',
+    'arm at side',
+    'arms at sides',
+    'crossed arms',
+    'flexing',
+    'reaching',
+    'shrugging',
+    't-pose',
+    'a-pose',
+    'v arms',
+    'w arms',
+    'stroking own chin',
+    'outstretched hand',
+    'hand on own ear',
+    'hand on own ass',
+    'hand in pocket',
+    'v',
+    'interlocked fingers',
+    'own hands clasped',
+    'own hands together',
+    'star hands',
+  ].map(noOverride),
+  fails: ['airplane arms', 'carry me', 'praise the sun'].map(noOverride),
+}
+
+export const postureHipsTags: TagGroup = {
+  slug: 'posture_-_hips',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: ['contrapposto', 'sway back'].map(noOverride),
+}
+
+export const postureLegsTags: TagGroup = {
+  slug: 'posture_-_legs',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'crossed ankles',
+    'leg up',
+    'legs up',
+    'knees to chest',
+    'legs over head',
+    'leg lift',
+    'outstretched leg',
+    'split',
+    'pigeon pose',
+    'standing split',
+    'spread legs',
+    'watson cross',
+    'captain morgan pose',
+    'knees apart feet together',
+    'knees together feet apart',
+    'knee up',
+    'knees up',
+    'pigeon-toed',
+    'plantar flexion',
+    'tiptoes',
+  ]
+    .map(noOverride)
+    .concat([
+      { name: 'tiptoe kiss', positivePromptOverride: `${fullBody2girlsPrompt} (tiptoe kiss:1.1),` },
+    ]),
+  fails: ['dorsiflexion', 'folded'].map(noOverride),
+}
+
+export const posturePostureOfTwoCharactersTags: TagGroup = {
+  slug: 'posture_-_posture_of_at_least_two_characters',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBody2girlsPrompt,
+  tags: [
+    'ass-to-ass',
+    'back-to-back',
+    'belly-to-belly',
+    'cheek-to-cheek',
+    'eye contact',
+    'face-to-face',
+    'head on chest',
+    'heads together',
+    'holding hands',
+    'leg lock',
+    'locked arms',
+    'over the knee',
+    'noses touching',
+    'shoulder-to-shoulder',
+    'tail lock',
+  ]
+    .map(noOverride)
+    .concat([
+      {
+        name: 'cheek-to-breast',
+        positivePromptOverride:
+          'masterpiece, best quality, amazing quality, official art, 2girls, white shirt, bob cut, black hair, blue pants, simple background, sitting, (cheek-to-breast:1.1),',
+      },
+      {
+        name: 'forehead-to-forehead',
+        positivePromptOverride:
+          'masterpiece, best quality, amazing quality, official art, 2girls, white shirt, bob cut, black hair, blue pants, simple background, facing another, (forehead-to-forehead:1.1),',
+      },
+      {
+        name: 'nipple-to-nipple',
+        positivePromptOverride:
+          'masterpiece, best quality, amazing quality, official art, 2girls, white shirt, bob cut, black hair, blue pants, simple background, censored nipples, (nipple-to-nipple:1.1),',
+      },
+    ]),
+}
+
+export const postureHuggingTags: TagGroup = {
+  slug: 'posture_-_hugging',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: ['hugging own legs', 'hugging object', 'hugging tail', 'wing hug']
+    .map(noOverride)
+    .concat(['hug', 'arm hug', 'hug from behind', 'waist hug'].map(withFullBody2girlsOverride)),
+}
+
+export const postureCarryingSomeoneTags: TagGroup = {
+  slug: 'posture_-_carrying_someone',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBody2girlsPrompt,
+  tags: [
+    'baby carry',
+    'carrying',
+    'carried breast rest',
+    'carrying over shoulder',
+    'carrying under arm',
+    'child carry',
+    "fireman's carry",
+    'piggyback',
+    'princess carry',
+    'shoulder carry',
+    'sitting on shoulder',
+    'standing on shoulder',
+  ].map(noOverride),
+}
+
+export const posturePosesTags: TagGroup = {
+  slug: 'posture_-_poses',
+  wikiPage: 'https://danbooru.donmai.us/wiki_pages/tag_group%3Aposture',
+  portrait: true,
+  prompt: fullBodyPrompt,
+  tags: [
+    'rabbit pose',
+    'horns pose',
+    'paw pose',
+    'claw pose',
+    'archer pose',
+    "bras d'honneur",
+    'body bridge',
+    'contrapposto',
+    'dojikko pose',
+    'ghost pose',
+    'inugami-ke no ichizoku pose',
+    'letter pose',
+    'ojou-sama pose',
+    'saboten pose',
+    'symmetrical hand pose',
+    'victory pose',
+    'villain pose',
+    'zombie pose',
+    'gendou pose',
+    'jojo pose',
+    "dio brando's pose \\(jojo\\)",
+    "giorno giovanna's pose \\(jojo\\)",
+    'superman exposure',
+    "jonathan joestar's pose \\(jojo\\)",
+    "kujo jotaro's pose \\(jojo\\)",
+    'kongou pose',
+    'kujou karen pose',
+  ].map(noOverride),
+}
+
+export const postureTagGroups: TagGroup[] = [
+  postureBasicPositionsTags,
+  postureMovementOfTheBodyTags,
+  postureOtherPosturesWholeBodyTags,
+  postureTorsoInclinationTags,
+  postureArmsTags,
+  postureHipsTags,
+  postureLegsTags,
+  posturePostureOfTwoCharactersTags,
+  postureHuggingTags,
+  postureCarryingSomeoneTags,
+  posturePosesTags,
+]
+
 export const faceTagGroups: TagGroup[] = [
   faceTags,
   faceTagsDrawingStyles,
@@ -417,5 +765,3 @@ export const compositionTagGroups: TagGroup[] = [
   imageCompositionPrintsPatterns,
   imageCompositionFramingTheBody,
 ]
-
-// POSES

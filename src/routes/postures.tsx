@@ -1,20 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { TagGroupBlock } from '../components/TagGroupBlock'
 import { Settings } from '../components/Settings'
+import { postureTagGroups } from '../tagGroups'
 
-export const Route = createFileRoute('/poses')({
-  component: Poses,
+export const Route = createFileRoute('/postures')({
+  component: Postures,
   head: () => ({
-    meta: [{ title: 'Poses - tagexplorer' }],
+    meta: [{ title: 'Postures - tagexplorer' }],
   }),
 })
 
-function Poses() {
+function Postures() {
   return (
     <div className="py-3 px-5 bg">
-      <Settings collapsibleGroupSlugs={['TODO']} route={Route} />
+      <Settings collapsibleGroupSlugs={postureTagGroups.map((g) => g.slug)} route={Route} />
       <div>
-        {[].map((tagGroup, i) => (
+        {postureTagGroups.map((tagGroup, i) => (
           <TagGroupBlock key={i} tagGroup={tagGroup} route={Route} />
         ))}
       </div>
