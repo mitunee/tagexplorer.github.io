@@ -803,7 +803,6 @@ export const gesturesOneHandTags: TagGroup = {
     'pointing',
     'pointing at self',
     'pointing at viewer',
-    'pointing down',
     'pointing forward',
     'pointing up',
     'kamina pose',
@@ -862,6 +861,7 @@ export const gesturesOneHandTags: TagGroup = {
     .concat([
       withFullBody2girlsOverride('pointing at another'),
       withFullBody2girlsOverride('pointing spider-man \\(meme\\)'),
+      withFullBodyOverride('pointing down'),
     ]),
   fails: [
     '\\||/',
