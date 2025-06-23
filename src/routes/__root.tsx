@@ -23,27 +23,29 @@ function Menu() {
       <HeadContent />
       <div data-theme={theme}>
         <div
-          className="flex custom-shadow-sm bg w-full py-3 items-center"
+          className="flex custom-shadow-sm bg w-full justify-center py-3 items-center px-2"
           style={{ borderBottom: 'var(--subtle-border)' }}
         >
-          <div className="flex grow gap-5 w-full justify-center items-center flex-wrap">
-            <Link to="/" className="[&.active]:font-bold">
-              Heads
-            </Link>{' '}
-            <Link to="/styles" className="[&.active]:font-bold">
-              Styles
-            </Link>{' '}
-            <Link to="/composition" className="[&.active]:font-bold">
-              Composition
-            </Link>{' '}
-            <Link to="/artists" className="[&.active]:font-bold">
-              Artists
-            </Link>
-            <Link to="/help" className="[&.active]:font-bold">
-              Help
-            </Link>
+          <div className="grow flex justify-center px-3">
+            <div className="flex gap-5 justify-start items-center flex-wrap">
+              <Link to="/" className="[&.active]:font-bold">
+                Heads
+              </Link>{' '}
+              <Link to="/styles" className="[&.active]:font-bold">
+                Styles
+              </Link>{' '}
+              <Link to="/composition" className="[&.active]:font-bold">
+                Composition
+              </Link>{' '}
+              <Link to="/artists" className="[&.active]:font-bold">
+                Artists
+              </Link>
+              <Link to="/help" className="[&.active]:font-bold">
+                Help
+              </Link>
+            </div>
           </div>
-          <div className="px-3">
+          <div className="px-4 flex items-center">
             <button
               className="rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 cursor-pointer"
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
