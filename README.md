@@ -1,13 +1,17 @@
 # https://tagexplorer.github.io
 
-To run locally:
+A convenient explorer for Danbooru tags that you can use on Danbooru-trained diffusion models.
+
+![](./screenshot.png)
+
+To run the development server locally:
 
 ```
 npm install
 npm run dev
 ```
 
-To build:
+To build to `./dist`:
 
 ```
 npm run build
