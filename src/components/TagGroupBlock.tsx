@@ -80,7 +80,7 @@ export const TagGroupBlock = ({
     void navigate({ search: { ...searchParams, page: newPageNumber } } as any)
   }
   const pages = chunkArray(tagsToShowWithoutBase, gensPerPage)
-  const pageToShow = artists ? (pages[pageNumber - 1] ?? pages[0]) : tagsToShowWithoutBase
+  const pageToShow = artists ? (pages[pageNumber - 1] ?? pages[0] ?? []) : tagsToShowWithoutBase
   const tagsToShow =
     pageToShow.length > 0 ? (favoritesOnly ? pageToShow : ['_base', ...pageToShow]) : []
 
