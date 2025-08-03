@@ -235,10 +235,6 @@ export const imageCompositionFramingTheBody: TagGroup = {
         positivePromptOverride: 'masterpiece, best quality, amazing quality, 1girl, (cropped arms:1.1),'
       },
       {
-        name: 'eyes out of frame',
-        positivePromptOverride: 'masterpiece, best quality, amazing quality, 1girl, white shirt, (eyes out of frame:1.1),'
-      },
-      {
         name: 'close-up',
         positivePromptOverride: 'masterpiece, best quality, amazing quality, 1girl, black hair, (close-up:1.1),'
       },
@@ -281,9 +277,19 @@ export const imageCompositionFramingTheBody: TagGroup = {
       {
         name: 'full body',
         positivePromptOverride: 'masterpiece, best quality, amazing quality, 1girl, (full body:1.1),'
+      },
+      {
+        name: 'portrait',
+        positivePromptOverride: 'masterpiece, best quality, amazing quality, 1girl, (portrait:1.1),'
       }
     ]),
-  fails: ['eyes out of frame'].map(noOverride),
+  fails: [
+    {
+      name: 'eyes out of frame',
+      positivePromptOverride:
+        'masterpiece, best quality, amazing quality, 1girl, white shirt, (eyes out of frame:1.1),',
+    },
+  ],
 }
 
 export const eyes: TagGroup = {
