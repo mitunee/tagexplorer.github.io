@@ -4,7 +4,7 @@ A convenient explorer for Danbooru tags that you can use on Danbooru-trained dif
 
 ![](./screenshot.png)
 
-To run the development server locally?
+To run the development server locally:
 
 ```
 npm install
