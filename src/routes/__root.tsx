@@ -24,6 +24,7 @@ function Menu() {
     <>
       <HeadContent />
       <div data-theme={theme}>
+        <h1>Hello szhublox!</h1>
         <div
           className="flex custom-shadow-sm bg w-full justify-center py-3 items-center px-2"
           style={{ borderBottom: 'var(--subtle-border)' }}
